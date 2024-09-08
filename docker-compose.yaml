@@ -1,0 +1,13 @@
+name: mariadbOperatorDemo
+volumes:
+  operator-volume:
+    driver: local
+
+services:
+  dockeroperator:
+    build:
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - operator-volume:/terraform/dev 
+    attach: false
+    env_file: ".env"
