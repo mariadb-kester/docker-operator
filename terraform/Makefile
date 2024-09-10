@@ -61,5 +61,10 @@ destroy-%:
 	rm -rf outputs
 
 initialise-helm:
-	helm repo add https://charts.helm.sh/stable
+	helm repo add helm-stable https://charts.helm.sh/stable
 	helm repo update
+
+install-operator:                                                                                             
+        helm repo add mariadb-operator https://helm.mariadb.com/mariadb-operator
+        helm install mariadb-operator mariadb-operator/mariadb-operator
+

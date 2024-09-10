@@ -18,6 +18,7 @@ RUN chmod +x /usr/local/bin/terraform
 WORKDIR /terraform
 COPY ./terraform /terraform
 COPY .env /terraform/
+COPY operator /terraform/
 
 # RUN make init-demo
 # RUN make plan-demo

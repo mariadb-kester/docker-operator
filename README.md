@@ -7,6 +7,16 @@ Clone this repoisitory
 Copy the .env.example file and add your API KEY
 
 docker compose up -d --build
+docker compose build --no-cache
+
+to build :
+make init-demo
+make plan-demo
+make apply-demo
+make initialise-helm
+make install-operator
+kubectl apply -f config
+kubectl apply -f examples/mariadb_galera_maxscale.yaml
 
 
 # Terraform Demo to build MariaDB Enterprise in Containers
