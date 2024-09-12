@@ -6,17 +6,39 @@ Create yourself a Digital Ocean Account
 Clone this repoisitory 
 Copy the .env.example file and add your API KEY
 
-docker compose up -d --build
 docker compose build --no-cache
+c
 
 to build :
 make init-demo
 make plan-demo
 make apply-demo
 make initialise-helm
+make prepare-operator
+sleep 30
 make install-operator
-kubectl apply -f config
-kubectl apply -f examples/mariadb_galera_maxscale.yaml
+watch "kubectl get pods" --> wait 3 minutes
+
+<!-- kubectl get users
+kubectl get databases
+kubectl get grants
+kubectl get connections -->
+
+make install-photo
+kubectl get svc and make sure you have external IP address
+find the maxscale-gui IP and connect to it via the IP address:8989 --> mariadb-operator / MaxScale11!
+
+wait about three minutes for photo service
+kubectl get svc
+
+browse to IP address
+
+
+
+To DESTORY:
+
+make destroy-demo
+
 
 
 # Terraform Demo to build MariaDB Enterprise in Containers
