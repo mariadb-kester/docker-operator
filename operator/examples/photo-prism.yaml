@@ -1,0 +1,50 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: photoprism
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  passwordSecretKeyRef:
+    name: mariadb
+    key: root-password
+  maxUserConnections: 20
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: photoprism
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  characterSet: utf8
+  collate: utf8_general_ci
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: photoprism
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  privileges:
+    - "ALL PRIVILEGES"
+  database: "*"
+  table: "*"
+  username: photoprism
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Connection
+metadata:
+  name: connection
+spec:
+  maxScaleRef:
+    name: mariadb-galera-maxscale
+  username: photoprism
+  passwordSecretKeyRef:
+    name: mariadb
+    key: root-password
+  database: photoprism
+  secretName: photoprism-conn
+  params:
+    parseTime: "true"

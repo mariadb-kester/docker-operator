@@ -1,0 +1,32 @@
+image:
+  repository: photoprism/photoprism
+  tag: "240420"
+  pullPolicy: IfNotPresent
+env:
+  PHOTOPRISM_AUTH_MODE: public
+  PHOTOPRISM_READONLY: false
+  PHOTOPRISM_LOG_LEVEL: debug
+secretRef: null
+persistence:
+  enabled: false
+database:
+  driver: mysql
+  dsnSecretKeyRef:
+    name: photoprism-conn
+    key: dsn
+sync:
+  enabled: false
+  cron: "* */1 * * *"
+  resources:
+    requests:
+      memory: 300Mi
+    limits:
+      memory: 1Gi
+service:
+  type: LoadBalancer
+  port: 80
+resources:
+  requests:
+    memory: 300Mi
+  limits:
+    memory: 1Gi

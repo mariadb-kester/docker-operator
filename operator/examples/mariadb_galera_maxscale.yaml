@@ -33,6 +33,12 @@ spec:
     metrics:
       enabled: true
 
+    auth:
+      adminUsername: mariadb-operator
+      adminPasswordSecretKeyRef:
+        name: maxscale
+        key: password
+
   galera:
     enabled: true
 

@@ -64,7 +64,15 @@ initialise-helm:
 	helm repo add helm-stable https://charts.helm.sh/stable
 	helm repo update
 
-install-operator:                                                                                             
-        helm repo add mariadb-operator https://helm.mariadb.com/mariadb-operator
-        helm install mariadb-operator mariadb-operator/mariadb-operator
+prepare-operator:                                                                                             
+	helm repo add mariadb-operator https://helm.mariadb.com/mariadb-operator
+	helm install mariadb-operator mariadb-operator/mariadb-operator
 
+install-operator:
+	kubectl apply -f config
+	kubectl apply -f examples/mariadb_galera_maxscale.yaml
+
+install-photo:
+	helm repo add photo-app https://mmontes11.github.io/charts
+	kubectl apply -f examples/photo-prism.yaml
+	helm install --version 0.10.0 photo-app photo-app/photoprism -f examples/photo-prism-values.yaml

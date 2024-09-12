@@ -7,7 +7,7 @@ Clone this repoisitory
 Copy the .env.example file and add your API KEY
 
 docker compose build --no-cache
-c
+docker compose up -d
 
 to build :
 make init-demo
