@@ -3,7 +3,7 @@ resource "digitalocean_kubernetes_cluster" "this" {
   region        = "lon1"
   auto_upgrade  = true
   surge_upgrade = true
-  version       = "1.30.4-do.0"
+  version       = "1.30.5-do.0"
   tags          = [var.environment]
 
   node_pool {
